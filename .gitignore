@@ -1,0 +1,32 @@
+# Dados (não versionar - arquivos grandes/sensíveis)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Ambiente virtual
+venv/
+env/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.ipynb_checkpoints/
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Variáveis de ambiente / segredos
+.env
+*.env
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

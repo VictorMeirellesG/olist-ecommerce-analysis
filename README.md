@@ -1,75 +1,78 @@
 # Análise de E-commerce Brasileiro — Olist
 
-Análise exploratória de dados de pedidos, clientes, vendedores e avaliações da Olist Store, um marketplace brasileiro, com o objetivo de extrair insights de negócio sobre vendas, logística e satisfação do cliente.
+Análise exploratória completa de ~100 mil pedidos do marketplace Olist (2016–2018), com dashboard interativo para exploração dos resultados.
 
-## 🎯 Objetivo
+## 📊 Principais Achados
 
-Este projeto tem como objetivo:
-- Praticar e demonstrar habilidades de análise de dados (limpeza, EDA, visualização)
-- Responder perguntas de negócio reais a partir de dados transacionais
-- Construir um dashboard interativo para exploração dos resultados
+| Métrica | Resultado |
+|---|---|
+| Total de pedidos analisados | 96.478 |
+| Receita total | R$ 13.591.644 |
+| Ticket médio | R$ 154,10 |
+| Nota média dos clientes | 4,09 ⭐ |
+| Tempo médio de entrega | 12,1 dias |
+| Pedidos entregues no prazo | **93,2%** |
+| Queda na nota por atraso | de 4,29 → 2,27 (-47%) |
 
-## 📊 Sobre os dados
+### 🔍 Insights de negócio
+- **Sazonalidade:** forte crescimento de set/2016 a nov/2017, com pico na Black Friday (nov/2017 ~7.200 pedidos)
+- **Geografia:** SP concentra ~40k pedidos — quase 4x mais que RJ e MG
+- **Categoria líder:** `health_beauty` lidera em receita (R$ 1,2M), seguida de `watches_gifts`
+- **Pagamento:** cartão de crédito representa 74% das transações, com mediana de 3 parcelas
+- **Impacto do atraso:** pedidos atrasados têm nota média 2,27 vs 4,29 nos pontuais — queda de ~47%
 
-Dataset público disponibilizado pela [Olist](https://olist.com) no Kaggle, contendo informações de ~100 mil pedidos realizados entre 2016 e 2018 em diversos marketplaces brasileiros.
-
-Fonte: [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
-
-> Os dados não estão incluídos neste repositório. Para reproduzir a análise, baixe o dataset do Kaggle e extraia os arquivos CSV em `data/raw/`.
-
-## ❓ Perguntas que este projeto busca responder
-
-- [ ] Quais categorias de produtos geram mais receita?
-- [ ] Como o tempo de entrega impacta a satisfação do cliente (reviews)?
-- [ ] Existe sazonalidade nas vendas ao longo do ano?
-- [ ] Quais estados concentram mais clientes e vendedores?
-- [ ] Qual a relação entre forma de pagamento e valor do pedido?
-
-## 🛠️ Tecnologias utilizadas
+## 🛠️ Tecnologias
 
 - Python (pandas, numpy)
-- Matplotlib / Seaborn / Plotly
+- Matplotlib / Seaborn
+- Plotly / Streamlit
 - Jupyter Notebook
-- Streamlit (dashboard)
+- Git / GitHub
 
-## 📁 Estrutura do projeto
-
-```
+## 📁 Estrutura
 olist-analise/
+
 ├── data/
-│   ├── raw/          # Dados originais (não versionado)
-│   └── processed/    # Dados tratados (não versionado)
-├── notebooks/         # Notebooks de exploração e análise
-├── src/                # Scripts reutilizáveis (limpeza, utils)
-├── reports/
-│   └── figures/        # Gráficos exportados
-├── dashboard/          # Aplicação Streamlit
+
+│   ├── raw/           # Dados originais (não versionado)
+
+│   └── processed/     # Dados tratados (não versionado)
+
+├── notebooks/
+
+│   └── 01_eda.ipynb   # Análise exploratória completa
+
+├── src/
+
+│   ├── data_loader.py
+
+│   ├── data_cleaning.py
+
+│   └── utils.py
+
+├── dashboard/
+
+│   └── app.py         # Dashboard Streamlit
+
 ├── requirements.txt
+
 └── README.md
-```
 
 ## 🚀 Como reproduzir
 
 ```bash
-# Clonar o repositório
 git clone git@github.com:VictorMeirellesG/olist-ecommerce-analysis.git
 cd olist-ecommerce-analysis
-
-# Criar ambiente virtual
 python3 -m venv venv
 source venv/bin/activate
-
-# Instalar dependências
 pip install -r requirements.txt
-
-# Baixar o dataset do Kaggle e extrair em data/raw/
+# Baixe o dataset em kaggle.com/datasets/olistbr/brazilian-ecommerce
+# Extraia os CSVs em data/raw/
+streamlit run dashboard/app.py
 ```
 
-## 📌 Status do projeto
-
-🚧 Em desenvolvimento
+## 📌 Status
+✅ Concluído
 
 ## 👤 Autor
-
-**Victor Meirelles**
-[GitHub](https://github.com/VictorMeirellesG)
+**Victor Meirelles** — [GitHub](https://github.com/VictorMeirellesG)

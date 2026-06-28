@@ -11,26 +11,28 @@ DATE_COLS = [
 
 
 def parse_order_dates(df: pd.DataFrame) -> pd.DataFrame:
-    """Converte as colunas de datas do DataFrame orders para datetime."""
-    orders = orders.copy()
+    """Converte colunas de data do DataFrame orders para datetime."""
+    df = df.copy()
     for col in DATE_COLS:
-        orders[col] = pd.to_datetime(orders[col])
-    return orders
+        df[col] = pd.to_datetime(df[col])
+    return df
 
 
-def get_delivered_orders(orders: pd.DataFrame) -> pd.DataFrame:
+def get_delivered_orders(df: pd.DataFrame) -> pd.DataFrame:
     """Filtra apenas pedidos entregues e calcula métricas de entrega."""
-    delivered = orders[orders["order_status"] == "delivered"].copy()
-    
+    delivered = df[df["order_status"] == "delivered"].copy()
+
     delivered["delivery_time_days"] = (
-        delivered["order_delivered_customer_date"] - delivered["order_purchase_timestamp"]
+        delivered["order_delivered_customer_date"]
+        - delivered["order_purchase_timestamp"]
     ).dt.days
 
-    delivered["delivery_vs_estimated"] = (
-        delivered["order_delivered_customer_date"] - delivered["order_estimated_delivery_date"]
+    delivered["delivery_vs_estimate"] = (
+        delivered["order_delivered_customer_date"]
+        - delivered["order_estimated_delivery_date"]
     ).dt.days
 
-    delivered["on_time"] = delivered["delivery_vs_estimated"] <= 0
+    delivered["on_time"] = delivered["delivery_vs_estimate"] <= 0
     delivered["order_month"] = (
         delivered["order_purchase_timestamp"].dt.to_period("M").astype(str)
     )
